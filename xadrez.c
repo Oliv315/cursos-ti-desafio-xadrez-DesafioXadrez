@@ -1,31 +1,68 @@
 #include <stdio.h>
-#include <string.h>
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
-
-int main() {
-//Rainha   // 8 casas para esquerda
-int Torre = 1;                      /// 5 casas para frente
-int Bispo = 1;                   /// 5 casas diagonais
-int Linha = 1, Coluna = 1;       // representação da mesa
-
-for (int Rainha = 1; Rainha < 9; Rainha++){
-    printf("Rainha, Esquerda, casa %d\n", Rainha);
+// Criando funções:
+void MovCima(int numero){
+    if (numero > 0 ){
+        MovCima(numero - 1);
+        printf("Para cima, Casa: %d\n", numero);
+    }
 }
 
-while (Torre < 6)
-{
-    printf("Torre, Frente, casa %d\n", Torre);
-    Torre++;
+void MovDireita(int numero){
+     if (numero > 0 ){
+        MovDireita(numero - 1);
+        printf("Para Direita, Casa: %d\n", numero);
+        
+    }
 }
-do {
-    printf("Bispo, Diagonal, casa (%d,%d)\n", Linha, Coluna);
-    Linha++, Coluna++, Bispo++;
-} while (Bispo < 6);
 
-return 0;
+void MovEsquerda( int numero){
+     if (numero > 0 ){
+        MovEsquerda(numero - 1);
+        printf("Para Esquerda, Casa: %d\n", numero);
+        
+    }
+}
+
+void MovDiagonal(int numero,int numero2){
+    if(numero > 0 && numero2 > 0){
+        MovDiagonal(numero -1, numero2 -1);
+        printf("Movimento Diagonal,casas: %d,%d\n",numero, numero2);
+    }
+}
+
+// Chamando as funções para cada peça:
+int main(){
+
+    int torre = 5;
+    printf("Movimento Torre\n");
+    MovCima(torre);
+    printf("\n");
+
+    int rainha = 8;
+    printf("Movimento Rainha\n");
+    MovEsquerda(rainha);
+    printf("\n");
+
+
+    int cavalo = 1;
+    while (cavalo > 0){
+        printf("Movimento do Cavalo\n");
+        MovCima(2);
+        MovDireita(1);
+        printf("\n");
+
+        cavalo--;
+    }
+
+    int bispo = 8;
+    printf("Movimento Bispo\n");
+    MovDiagonal(bispo, bispo);
+    printf("\n");
+
+    bispo--;
+       
+    return 0;
 }
 
 
